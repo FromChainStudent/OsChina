@@ -20,11 +20,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile 'com.squareup.retrofit2:retrofit-converters:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.navercorp.volleyextensions:volley-requests:2.0.1'
+    compile 'org.ops4j.pax.web.samples.web-fragment:fragment:6.0.3'
+    compile 'in.srain.cube:ptr-load-more:1.0.6'
+    compile 'com.androidkun:pulltorefreshrecyclerview:1.0.7'
 }

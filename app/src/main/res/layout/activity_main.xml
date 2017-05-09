@@ -7,6 +7,7 @@
     tools:context="com.example.oschina.activity.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/main_layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#12ea46"
@@ -19,14 +20,24 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:text="综合"
-            android:textSize="24dp" />
+            android:textSize="21dp" />
 
         <ImageButton
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@mipmap/search_icon" />
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_search_normal" />
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/main_layout_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_layout_title">
+
+    </FrameLayout>
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -42,6 +53,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:button="@null"
+            android:checked="true"
             android:drawableTop="@drawable/main_news"
             android:gravity="center"
             android:text="综合" />
@@ -61,10 +73,12 @@
             android:id="@+id/main_btn_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:button="@null"
-
-            />
+            android:drawableBottom="@drawable/main_add"
+            android:gravity="center" />
 
         <RadioButton
             android:id="@+id/main_btn_discover"
@@ -87,7 +101,5 @@
             android:drawableTop="@drawable/main_my"
             android:gravity="center"
             android:text="我的" />
-
-
     </RadioGroup>
 </RelativeLayout>
