@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.oschina.MainActivity;
 import com.example.oschina.R;
 
 public class SplashActivity extends Activity {
