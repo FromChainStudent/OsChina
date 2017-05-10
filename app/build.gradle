@@ -34,4 +34,5 @@ dependencies {
     compile 'org.ops4j.pax.web.samples.web-fragment:fragment:6.0.3'
     compile 'in.srain.cube:ptr-load-more:1.0.6'
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.7'
+    compile files('libs/xstream-1.4.jar')
 }

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.oschina.R;
 import com.example.oschina.base.BaseActivity;
 import com.example.oschina.fragment.MainFragment;
+import com.example.oschina.fragment.NewsFragment;
+import com.example.oschina.utils.LogUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,13 +47,12 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.main_layout_frame, new MainFragment());
+        transaction.replace(R.id.main_layout_frame, new NewsFragment());
         transaction.commit();
     }
 
     @Override
     protected void loadData() {
-
     }
 
     @Override
