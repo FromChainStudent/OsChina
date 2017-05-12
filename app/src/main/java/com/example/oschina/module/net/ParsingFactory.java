@@ -1,4 +1,4 @@
-package com.example.oschina.net;
+package com.example.oschina.module.net;
 
 /**
  * Created by Administrator on 2017/4/21 0021.
@@ -14,7 +14,7 @@ public class ParsingFactory {
             case OKHTPP:
                 break;
             case RETROFIT:
-                ihttp = new RetrofitImple();
+                ihttp = RetrofitImple.getInstance();
                 break;
         }
         return ihttp;

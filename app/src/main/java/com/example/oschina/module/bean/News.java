@@ -1,19 +1,29 @@
-package com.example.oschina.bean;
+package com.example.oschina.module.bean;
 
 import java.util.List;
 
 /**
- * Created by YC on 2017/5/10.
+ * Created by Administrator on 2017/5/9 0009.
  */
 
 public class News {
-
 
     private String catalog;
     private String pagesize;
     private String newsCount;
     private NoticeBean notice;
     private List<NewsBean> newslist;
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "catalog='" + catalog + '\'' +
+                ", pagesize='" + pagesize + '\'' +
+                ", newsCount='" + newsCount + '\'' +
+                ", notice=" + notice +
+                ", newslist=" + newslist +
+                '}';
+    }
 
     public String getCatalog() {
         return catalog;
@@ -114,6 +124,21 @@ public class News {
         private String url;
         private NewstypeBean newstype;
 
+        @Override
+        public String toString() {
+            return "NewsBean{" +
+                    "id='" + id + '\'' +
+                    ", title='" + title + '\'' +
+                    ", body='" + body + '\'' +
+                    ", commentCount='" + commentCount + '\'' +
+                    ", author='" + author + '\'' +
+                    ", authorid='" + authorid + '\'' +
+                    ", pubDate='" + pubDate + '\'' +
+                    ", url='" + url + '\'' +
+                    ", newstype=" + newstype +
+                    '}';
+        }
+
         public String getId() {
             return id;
         }
@@ -188,8 +213,28 @@ public class News {
 
         public static class NewstypeBean {
             private String type;
+
+            @Override
+            public String toString() {
+                return "NewstypeBean{" +
+                        "type='" + type + '\'' +
+                        ", authoruid2='" + authoruid2 + '\'' +
+                        ", eventurl='" + eventurl + '\'' +
+                        ", attachment='" + attachment + '\'' +
+                        '}';
+            }
+
             private String authoruid2;
             private String eventurl;
+            private String attachment;
+
+            public String getAttachment() {
+                return attachment;
+            }
+
+            public void setAttachment(String attachment) {
+                this.attachment = attachment;
+            }
 
             public String getType() {
                 return type;

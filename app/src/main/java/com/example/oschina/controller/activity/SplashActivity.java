@@ -1,4 +1,4 @@
-package com.example.oschina.activity;
+package com.example.oschina.controller.activity;
 
 import android.app.Activity;
 import android.content.Intent;

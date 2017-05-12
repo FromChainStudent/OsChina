@@ -1,4 +1,4 @@
-package com.example.oschina.activity;
+package com.example.oschina.controller.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

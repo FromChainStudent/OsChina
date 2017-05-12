@@ -1,4 +1,4 @@
-package com.example.oschina.net;
+package com.example.oschina.module.net;
 
 import java.util.Map;
 
@@ -20,6 +20,6 @@ public class ParsingImple implements Parsing {
 
     @Override
     public void post(String url, Map<String, String> map, MyCallBack callback) {
-
+        ParsingFactory.initParsing().POST(url, map, callback);
     }
 }

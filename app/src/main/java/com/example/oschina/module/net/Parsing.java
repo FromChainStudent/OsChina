@@ -1,4 +1,4 @@
-package com.example.oschina.net;
+package com.example.oschina.module.net;
 
 import java.util.Map;
 

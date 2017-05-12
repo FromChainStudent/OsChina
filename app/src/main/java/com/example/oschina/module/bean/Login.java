@@ -1,4 +1,4 @@
-package com.example.oschina.bean;
+package com.example.oschina.module.bean;
 
 /**
  * Created by YC on 2017/5/10.

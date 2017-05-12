@@ -1,15 +1,15 @@
-package com.example.oschina.fragment;
+package com.example.oschina.controller.fragment;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.oschina.R;
 import com.example.oschina.base.BaseFragment;
@@ -28,7 +28,7 @@ public class NewsFragment extends BaseFragment {
     @Bind(R.id.fragment_news_tab)
     TabLayout mTab;
     @Bind(R.id.fragment_news_tab_image)
-    ImageView fragmentNewsTabImage;
+    ImageButton iv;
     @Bind(R.id.fragment_news_vp)
     ViewPager mVp;
     private List<Fragment> mFraList = new ArrayList<>();
@@ -55,7 +55,16 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+        final RotateAnimation animation = new RotateAnimation(0f,270f,Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animation.setDuration(1000);
+                iv.setAnimation(animation);
+                animation.startNow();
+                Toast.makeText(getContext(), "被点击了", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

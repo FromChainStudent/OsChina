@@ -35,4 +35,6 @@ dependencies {
     compile 'in.srain.cube:ptr-load-more:1.0.6'
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.7'
     compile files('libs/xstream-1.4.jar')
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
 }

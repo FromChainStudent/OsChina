@@ -1,4 +1,4 @@
-package com.example.oschina.net;
+package com.example.oschina.module.net;
 
 /**
  * Created by Administrator on 2017/5/9 0009.

@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@mipmap/bg_login"
-    tools:context="com.example.oschina.activity.LoginActivity">
+    tools:context="com.example.oschina.controller.activity.LoginActivity">
 
     <ImageButton
         android:id="@+id/login_back"

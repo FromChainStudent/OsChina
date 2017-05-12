@@ -1,4 +1,4 @@
-package com.example.oschina.net;
+package com.example.oschina.module.net;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,9 +26,10 @@ public class RetrofitImple implements IHTTP {
     private final Retrofit re;
     private static SharedPreferences share;
 
-    protected RetrofitImple() {
+    private RetrofitImple() {
         re = new Retrofit.Builder().baseUrl("http://www.baidu.com/").build();
         inter = re.create(RetrofitInter.class);
+        share = App.baseActivity.getSharedPreferences("data", App.baseActivity.MODE_PRIVATE);
     }
 
     public synchronized static RetrofitImple getInstance() {
@@ -40,8 +41,8 @@ public class RetrofitImple implements IHTTP {
 
     @Override
     public void GET(String url, Map<String, String> map, MyCallBack callback) {
-        SharedPreferences sha = App.baseActivity.getSharedPreferences("data", Context.MODE_PRIVATE);
-        Call<ResponseBody> call = inter.parsingGet(sha.getString("cookie", ""), url, map);
+
+        Call<ResponseBody> call = inter.parsingGet(share.getString("cookie", ""), url, map);
         initCall(callback, call);
     }
 
@@ -70,7 +71,7 @@ public class RetrofitImple implements IHTTP {
                     }
                 } else {
                     try {
-                        callback.onError(response.body().string());
+                        callback.onError(response.errorBody().string());
                     } catch (IOException e) {
                         callback.onError(e.getMessage());
                     }
@@ -96,7 +97,7 @@ public class RetrofitImple implements IHTTP {
                     }
                 } else {
                     try {
-                        callback.onError(response.body().string());
+                        callback.onError(response.errorBody().string());
                     } catch (IOException e) {
                         callback.onError(e.getMessage());
                     }
@@ -118,7 +119,6 @@ public class RetrofitImple implements IHTTP {
             String value = head.get(key);
             if (key.contains("Set-Cookie")) {
                 cookie += value + ";";
-                share = App.baseActivity.getSharedPreferences("data", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = share.edit();
                 editor.putString("cookie", cookie);
                 Log.i("cookie________", cookie);

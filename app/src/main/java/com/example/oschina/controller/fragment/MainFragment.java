@@ -1,4 +1,4 @@
-package com.example.oschina.fragment;
+package com.example.oschina.controller.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.adapter.BaseAdapter;
@@ -19,9 +18,10 @@ import com.androidkun.adapter.ViewHolder;
 import com.androidkun.callback.PullToRefreshListener;
 import com.example.oschina.R;
 import com.example.oschina.base.BaseFragment;
-import com.example.oschina.bean.News;
-import com.example.oschina.net.MyCallBack;
-import com.example.oschina.net.RetrofitImple;
+import com.example.oschina.module.bean.News;
+import com.example.oschina.module.net.MyCallBack;
+import com.example.oschina.module.net.RetrofitImple;
+import com.example.oschina.utils.Dates;
 import com.example.oschina.utils.LogUtils;
 import com.thoughtworks.xstream.XStream;
 
@@ -43,7 +43,6 @@ public class MainFragment extends BaseFragment {
     PullToRefreshRecyclerView ptr_fragment;
     private MyAdapter adapter;
     private List<News.NewsBean> newList = new ArrayList<>();
-    private int i = 2;
     private ViewPager vp;
     private List<ImageView> ivList = new ArrayList<>();
     private ImageView iv;
@@ -60,6 +59,7 @@ public class MainFragment extends BaseFragment {
             }
         }
     };
+    private int pageIndex = 1;
 
     @Override
     protected int layoutID() {
@@ -69,22 +69,44 @@ public class MainFragment extends BaseFragment {
     @Override
     protected void initView() {
         LogUtils.i("初始化组件", "开始");
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        initNet();
         ptr_fragment.setLayoutManager(linearLayoutManager);
         //下拉刷新
         ptr_fragment.setPullRefreshEnabled(true);
         //上拉加载
         ptr_fragment.setLoadingMoreEnabled(true);
+        //设置刷新回调
         ptr_fragment.setPullToRefreshListener(new PullToRefreshListener() {
             @Override
             public void onRefresh() {
-                adapter.notifyDataSetChanged();
+                ptr_fragment.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pageIndex = 0;
+                        newList.clear();
+                        initNet();
+                        ptr_fragment.setRefreshComplete();
+
+                    }
+                },2000);
             }
 
             @Override
             public void onLoadMore() {
-                initNet();
+                ptr_fragment.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pageIndex++;
+                        initNet();
+                        ptr_fragment.setLoadMoreComplete();
+//                        mEditor.putInt("Index", pageIndex);
+//                        Log.i("加载", pageIndex + "");
+//                        mEditor.commit();
+                    }
+                }, 2000);
             }
         });
         LogUtils.i("初始化组件", "完成");
@@ -150,6 +172,8 @@ public class MainFragment extends BaseFragment {
         vp.setCurrentItem(Integer.MAX_VALUE / 2);
         vp.setCurrentItem(COUNT++);
 
+        handler.sendEmptyMessageAtTime(1, 3000);
+
     }
 
     /**
@@ -159,8 +183,8 @@ public class MainFragment extends BaseFragment {
         String url = "http://www.oschina.net/action/api/news_list";
         Map<String, String> map = new HashMap<>();
         map.put("catalog", String.valueOf(1));
-        map.put("pageIndex", String.valueOf(i));
-        map.put("pageSize", String.valueOf(10));
+        map.put("pageIndex", String.valueOf(2));
+        map.put("pageSize", String.valueOf(50));
         RetrofitImple.getInstance().GETS(url, map, new MyCallBack() {
             @Override
             public void onSuccess(String strSuccess) {
@@ -170,7 +194,6 @@ public class MainFragment extends BaseFragment {
                 stream.alias("news", News.NewsBean.class);
                 News news = (News) stream.fromXML(strSuccess);
                 newList.addAll(news.getNewslist());
-                i++;
             }
 
             @Override
@@ -190,7 +213,9 @@ public class MainFragment extends BaseFragment {
             holder.setText(R.id.adapter_tv_title, news.getTitle());
             holder.setText(R.id.adapter_tv_content, news.getBody());
             holder.setText(R.id.adapter_tv_name, news.getAuthor());
-            holder.setText(R.id.adapter_tv_data, news.getPubDate());
+            String date = news.getPubDate();
+            String date1 = Dates.getDate(date);
+            holder.setText(R.id.adapter_tv_data, date1);
             holder.setText(R.id.adapter_tv_count, news.getCommentCount());
         }
     }

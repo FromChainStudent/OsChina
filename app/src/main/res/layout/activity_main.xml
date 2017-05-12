@@ -4,12 +4,12 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.oschina.activity.MainActivity">
+    tools:context="com.example.oschina.controller.activity.MainActivity">
 
     <RelativeLayout
         android:id="@+id/main_layout_title"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:background="#12ea46"
         android:padding="5dp">
 
@@ -17,17 +17,18 @@
             android:id="@+id/main_tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:gravity="center"
+            android:layout_marginTop="3dp"
             android:text="综合"
-            android:textSize="19dp" />
+            android:textSize="15dp"
+            android:textColor="#ffffff"/>
 
         <ImageButton
+            android:id="@+id/main_iv_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:background="@drawable/btn_search_normal" />
     </RelativeLayout>
 
@@ -43,7 +44,7 @@
     <RadioGroup
         android:id="@+id/main_btn_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="5">

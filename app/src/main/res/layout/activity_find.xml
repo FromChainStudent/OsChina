@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_find"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.example.oschina.controller.activity.FindActivity">
+
+    <LinearLayout
+        android:id="@+id/find_layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_ed">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/search_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:id="@+id/find_et"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:hint="搜索博客、软件、资讯、问答、找人"
+            android:background="@null"
+            android:layout_gravity="center_horizontal"
+            android:maxLines="1"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/find_iv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_clear"
+            android:layout_gravity="center_vertical"
+            android:rotation="90"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/find_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#12ea46"
+        android:text="取消"/>
+
+    <FrameLayout
+        android:id="@+id/find_layout_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/find_layout_top" />
+</RelativeLayout>
